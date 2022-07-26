@@ -53,6 +53,7 @@ html
             }
             .pane-content {
                 height: 100%;
+                width: 100%;
                 margin: 0;
                 overflow: hidden;
             }
@@ -197,6 +198,14 @@ html
                 }
             }
 
+            function reload_app() {
+                var app_iframe = $("#app-iframe");
+
+                if (app_iframe) {
+                    app_iframe.attr('src', applications_url);
+                }
+            }
+
             function open_link_in_console(url) {
                 $("#console-iframe").attr('src', url);
                 $("#console-tab").trigger("click");
@@ -296,7 +305,7 @@ html
                                     a(role="menuitem" onclick=`window.open("../console");`) Open Console
                             if applications_url
                                 li.dropdown-item
-                                    a(role="menuitem" onclick=`window.open(applications_url);`) Open Applications
+                                    a(role="menuitem" onclick="window.open(" + applications_url + ");") Open Applications
 
                             if restart_url
                                 li.dropdown-divider(role="separator")
