@@ -1,4 +1,4 @@
-FROM bookbag-base-dashboard:latest
+FROM epic-demo-bookbag/bookbag-base-dashboard:latest
 
 USER root
 
