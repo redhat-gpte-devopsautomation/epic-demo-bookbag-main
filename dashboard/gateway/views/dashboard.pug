@@ -195,10 +195,12 @@ html
             }
 
             function reload_app() {
+                $("#app-tab").trigger("click");
+
                 var app_iframe = $("#app-iframe");
 
                 if (app_iframe) {
-                    app_iframe.attr('src', app_iframe.contents().get(0).location.href);
+                    app_iframe.attr('src', $("#app-iframe").get(0).src);
                 }
             }
 
