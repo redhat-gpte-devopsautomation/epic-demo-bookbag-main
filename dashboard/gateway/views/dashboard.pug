@@ -202,7 +202,7 @@ html
                 var app_iframe = $("#app-iframe");
 
                 if (app_iframe) {
-                    app_iframe.attr('src', applications_url);
+                    app_iframe.attr('src', app_iframe.contents().get(0).location.href);
                 }
             }
 
@@ -305,7 +305,7 @@ html
                                     a(role="menuitem" onclick=`window.open("../console");`) Open Console
                             if applications_url
                                 li.dropdown-item
-                                    a(role="menuitem" onclick="window.open(" + applications_url + ");") Open Applications
+                                    a(role="menuitem" onclick="window.open('" + applications_url + "');") Open Applications
 
                             if restart_url
                                 li.dropdown-divider(role="separator")
