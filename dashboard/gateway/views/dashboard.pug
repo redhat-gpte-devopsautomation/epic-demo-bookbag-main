@@ -127,10 +127,6 @@ html
                 text-align: center;
             }
 
-            .slides-link {
-                text-align: center;
-            }
-
         script.
             require.config({
               paths: {
@@ -211,11 +207,6 @@ html
                 $("#console-tab").trigger("click");
             }
 
-            function open_link_in_slides(url) {
-                $("#slides-iframe").attr('src', url);
-                $("#slides-tab").trigger("click");
-            }
-
             function bring_terminal_to_front() {
                 $("#terminals-tab").trigger("click");
                 var terminal_iframe = document.getElementById("terminal1-iframe");
@@ -233,13 +224,13 @@ html
 
                 $("#terminals-pane").height(height);
                 $("#console-pane").height(height);
-                $("#slides-pane").height(height);
+                $("#app-pane").height(height);
 
                 var width = $("#workarea-div").width();
 
                 $("#terminals-pane").width(width);
                 $("#console-pane").width(width);
-                $("#slides-pane").width(width);
+                $("#app-pane").height(height);
             }
 
             $(window).on('load', function() {
@@ -332,10 +323,6 @@ html
                 if applications_url
                     div.tab-pane.fade.show.iframe-div#app-pane(role="tabpanel" aria-labelledby="app-tab")
                         iframe#app-iframe(src=applications_url)
-
-                if with_slides
-                    div.tab-pane.fade.show.iframe-div#slides-pane(role="tabpanel" aria-labelledby="slides-tab")
-                        iframe#slides-iframe(src="../slides/index.html")
 
         script.
             require(['split'], function(split) {
