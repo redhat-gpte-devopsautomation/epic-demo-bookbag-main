@@ -187,8 +187,7 @@ html
                 var app_iframe = $("#app-iframe");
 
                 if (app_iframe) {
-                    app_iframe.attr('src',
-                      "https://firefox-bookbag-tr1.apps.cluster-xbzlg.xbzlg.sandbox1515.opentlc.com");
+                    app_iframe.attr('src', applications_url);
                 }
             }
 
@@ -292,7 +291,7 @@ html
                                     a(role="menuitem" onclick=`window.open("../console");`) Open Console
                             if applications_url
                                 li.dropdown-item
-                                    a(role="menuitem" onclick=`window.open("https://firefox-bookbag-tr1.apps.cluster-xbzlg.xbzlg.sandbox1515.opentlc.com");`) Open Applications
+                                    a(role="menuitem" onclick=`window.open(applications_url);`) Open Applications
                             if with_slides
                                 li.dropdown-item
                                     a(role="menuitem" onclick=`window.open("../slides");`) Open Slides
@@ -320,7 +319,7 @@ html
 
                 if applications_url
                     div.tab-pane.fade.show.iframe-div#app-pane(role="tabpanel" aria-labelledby="app-tab")
-                        iframe#app-iframe(src="https://firefox-bookbag-tr1.apps.cluster-xbzlg.xbzlg.sandbox1515.opentlc.com")
+                        iframe#app-iframe(src=applications_url)
 
                 if with_slides
                     div.tab-pane.fade.show.iframe-div#slides-pane(role="tabpanel" aria-labelledby="slides-tab")
