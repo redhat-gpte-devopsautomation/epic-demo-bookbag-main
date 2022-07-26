@@ -1,4 +1,4 @@
-FROM image-registry.openshift-image-registry.svc:5000/epic-demo-bookbag/bookbag-base-dashboard:latest
+FROM image-registry.openshift-image-registry.svc:5000/epic-demo-bookbag/bookbag-dashboard:latest
 
 USER root
 
