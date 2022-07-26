@@ -1,4 +1,4 @@
-FROM quay.io/openshifthomeroom/workshop-dashboard:5.0.0
+FROM image-registry.openshift-image-registry.svc:5000/epic-demo-bookbag-main/bookbag-base-dashboard:latest
 
 USER root
 
