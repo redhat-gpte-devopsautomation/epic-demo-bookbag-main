@@ -377,7 +377,7 @@ html
                 var style = '<style>a { pointer-events: none }</style>';
                 $(this).contents().find('head').append(style);
             });
-            ('#app-tab').on('click', function (e) {
+            $('#app-tab').on('click', function (e) {
                 $("#app-iframe")[0].contentWindow.focus();
             });
             $("#app-iframe").mouseover(function() {
