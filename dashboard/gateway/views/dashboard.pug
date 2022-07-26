@@ -53,7 +53,6 @@ html
             }
             .pane-content {
                 height: 100%;
-                width: 100$
                 margin: 0;
                 overflow: hidden;
             }
@@ -112,6 +111,23 @@ html
               width: 100%;
               height: 100%;
               border: 0;
+            }
+
+            #workshop-dialog {
+                width: auto;
+                max-width: 90%;
+            }
+
+            .homeroom-link {
+                text-align: center;
+            }
+
+            .workshop-link {
+                text-align: center;
+            }
+
+            .slides-link {
+                text-align: center;
             }
 
         script.
@@ -181,16 +197,6 @@ html
                 }
             }
 
-            function reload_app() {
-                $("#app-tab").trigger("click");
-
-                var app_iframe = $("#app-iframe");
-
-                if (app_iframe) {
-                    app_iframe.attr('src', applications_url);
-                }
-            }
-
             function open_link_in_console(url) {
                 $("#console-iframe").attr('src', url);
                 $("#console-tab").trigger("click");
@@ -219,14 +225,12 @@ html
                 $("#terminals-pane").height(height);
                 $("#console-pane").height(height);
                 $("#slides-pane").height(height);
-                $("#app-pane").height(height);
 
                 var width = $("#workarea-div").width();
 
                 $("#terminals-pane").width(width);
                 $("#console-pane").width(width);
                 $("#slides-pane").width(width);
-                $("#app-pane").width(width);
             }
 
             $(window).on('load', function() {
@@ -244,6 +248,9 @@ html
                         }
                     }
                 });
+
+                var dashboard_url = $(location).attr("href");
+                $('#workshop-link').append(dashboard_url);
 
                 $("#cover").hide();
             });
@@ -264,15 +271,12 @@ html
                     li.nav-item
                         a.nav-link#app-tab(data-toggle="tab" href="#app-pane" role="tab" aria-controls="app-pane" aria-selected=false) Applications
 
-                if with_slides
-                    li.nav-item
-                        a.nav-link#slides-tab(data-toggle="tab" href="#slides-pane" role="tab" aria-controls="slides-pane" aria-selected=false) Slides
-
                 li.nav-item.ml-auto
                     div.dropdown
                         button.btn.btn-default.btn-transparent#actions-dropdown(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="true")
                             span.hamburger
                         ul.dropdown-menu(role="menu", aria-labelledby="actions-dropdown")
+
                             li.dropdown-item
                                 a(role="menuitem" onclick=`reload_terminal();`) Reload Terminal
                             if console_url
@@ -284,6 +288,7 @@ html
 
                             li.dropdown-divider(role="separator")
 
+
                             li.dropdown-item
                                 a(role="menuitem" onclick=`window.open("../terminal/session/"+generate_terminal_session_id());`) Open Terminal
                             if console_url
@@ -292,9 +297,7 @@ html
                             if applications_url
                                 li.dropdown-item
                                     a(role="menuitem" onclick=`window.open(applications_url);`) Open Applications
-                            if with_slides
-                                li.dropdown-item
-                                    a(role="menuitem" onclick=`window.open("../slides");`) Open Slides
+
                             if restart_url
                                 li.dropdown-divider(role="separator")
                                 li.dropdown-item
@@ -326,6 +329,16 @@ html
                         iframe#slides-iframe(src="../slides/index.html")
 
         script.
+            require(['split'], function(split) {
+                split(['#workshop-div', '#workarea-div'], {
+                    gutterSize: 8,
+                    sizes: [35, 65],
+                    cursor: 'row-resize',
+                    onDrag: function () {
+                        adjust_split_panes();
+                    }
+                });
+            });
 
         if terminal_tab == 'split'
             script.
@@ -368,7 +381,7 @@ html
                 var style = '<style>a { pointer-events: none }</style>';
                 $(this).contents().find('head').append(style);
             });
-            $('#app-tab').on('click', function (e) {
+            ('#app-tab').on('click', function (e) {
                 $("#app-iframe")[0].contentWindow.focus();
             });
             $("#app-iframe").mouseover(function() {
@@ -382,4 +395,3 @@ html
                 var ua = navigator.userAgent.toLowerCase();
                 return ((ua.indexOf('safari') != -1) && (ua.indexOf('chrome') === -1));
             }
-
